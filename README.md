@@ -1,0 +1,2 @@
+# Threat-Mirror
+At Deakin Threat Mirror, we are on a mission to revolutionise cybersecurity by making threat intelligence accessible and affordable for small and medium-sized enterprises (SMEs) and developing economies. We believe that security is not a luxury but a necessity. Thus, we are committed to creating a platform that provides complete visibility to threats surrounding organisations at ease despite the resources they hold .
