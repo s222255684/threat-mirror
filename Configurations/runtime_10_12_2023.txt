@@ -1,0 +1,735 @@
+Abusix-Expert:
+  bot_id: Abusix-Expert
+  description: Add abuse contact information from the Abusix online service for source
+    and destination IP address
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.abusix.expert
+  name: Abusix
+  parameters:
+    bottype: Expert
+    destination_queues:
+      _default: [Cymru-Expert-queue]
+  run_mode: continuous
+Abusix-Expert-2:
+  bot_id: Abusix-Expert-2
+  description: Add abuse contact information from the Abusix online service for source
+    and destination IP address
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.abusix.expert
+  name: Abusix
+  parameters:
+    bottype: Expert
+    destination_queues:
+      _default: [cymru-whois-expert-queue]
+  run_mode: continuous
+AttackingNetBlocks-Collector:
+  bot_id: AttackingNetBlocks-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [DshieldBlock-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: ' https://www.dshield.org/block.txt'
+    http_url_formatting: false
+    http_username: ''
+    provider: Dshield-cApture
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+BlockListDE-Parser:
+  bot_id: BlockListDE-Parser
+  description: Parse the Blocklist.DE feeds
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.blocklistde.parser
+  name: BlockListDE
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+Blocklist-Apache-Collector:
+  bot_id: Blocklist-Apache-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [BlockListDE-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://lists.blocklist.de/lists/apache.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: Blocklist.de
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Blocklist-Brutef-Collector:
+  bot_id: Blocklist-Brutef-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [BlockListDE-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://lists.blocklist.de/lists/bruteforcelogin.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: Blocklist.de
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Blocklist-bots-Collector:
+  bot_id: Blocklist-bots-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [BlockListDE-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://lists.blocklist.de/lists/bots.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: Blocklist.de
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Cymru-Expert:
+  bot_id: Cymru-Expert
+  description: Add ASN, netmask, AS name, country, registry and allocation time from
+    the Cymru Whois DNS service
+  enabled: true
+  group: Expert
+  module: intelmq.bots.experts.cymru_whois.expert
+  name: Cymru
+  parameters:
+    bottype: Expert
+    destination_queues:
+      _default: [logtash-Output-queue, file-output-queue]
+    overwrite: false
+    redis_cache_db: 5
+    redis_cache_host: 127.0.0.1
+    redis_cache_password: ''
+    redis_cache_port: 6379
+    redis_cache_ttl: 86400
+  run_mode: continuous
+DNS-Rec-Collector:
+  bot_id: DNS-Rec-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Dataplane-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://dataplane.org/dnsrd.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: Dataplane
+    rate_limit: 3600
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Dataplane-Parser:
+  bot_id: Dataplane-Parser
+  description: Parse the Dataplane feeds
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.dataplane.parser
+  name: Dataplane
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+DshieldBlock-Parser:
+  bot_id: DshieldBlock-Parser
+  description: Parse the DShield Block feed
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.dshield.parser_block
+  name: DshieldBlock
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+Gethostbyname-Expert1:
+  bot_id: Gethostbyname-Expert1
+  description: Resolve the IP address for the FQDN
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.gethostbyname.expert
+  name: Gethostbyname
+  parameters:
+    bottype: Expert
+    destination_queues:
+      _default: [Abusix-Expert-2-queue]
+    fallback_to_url: true
+    gaierrors_to_ignore: []
+    overwrite: false
+  run_mode: continuous
+LatestMaliciousDomain-Collector:
+  bot_id: LatestMaliciousDomain-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Threatminer-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: ' https://www.threatminer.org/'
+    http_url_formatting: false
+    http_username: ''
+    provider: ''
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+MalwareUrl-Collector:
+  bot_id: MalwareUrl-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Malwareurl-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://www.malwareurl.com/
+    http_url_formatting: false
+    http_username: ''
+    provider: ''
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Malwareurl-Parser:
+  bot_id: Malwareurl-Parser
+  description: Parse the MalwareURL feed
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.malwareurl.parser
+  name: Malwareurl
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+OpenPhish-Parser:
+  bot_id: OpenPhish-Parser
+  description: Parse the OpenPhish feed
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.openphish.parser
+  name: OpenPhish
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+OpenPhishPublic-collector:
+  bot_id: OpenPhishPublic-collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [OpenPhish-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://www.openphish.com/feed.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: OpenPhish
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+SSH-PW-Auth-Collector:
+  bot_id: SSH-PW-Auth-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Dataplane-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://dataplane.org/sshpwauth.txt
+    http_url_formatting: false
+    http_username: ''
+    provider: Dataplane
+    rate_limit: 3600
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Sucuri-Hidden-Iframe-Collector:
+  bot_id: Sucuri-Hidden-Iframe-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Sucuri-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://labs.sucuri.net/about/?malware
+    http_url_formatting: false
+    http_username: ''
+    provider: Sucuri
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Sucuri-Parser:
+  bot_id: Sucuri-Parser
+  description: Parse the Sucuri Malware Hidden Iframes and Conditional redirections
+    feeds
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.sucuri.parser
+  name: Sucuri
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+Threatminer-Parser:
+  bot_id: Threatminer-Parser
+  description: Parse the Threatminer feed
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.threatminer.parser
+  name: Threatminer
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+URL-Expert:
+  bot_id: URL-Expert
+  description: Extract additional information for the URL.Possibly fills the following
+    fields:"source.fqdn","source.ip","source.port","source.urlpath","source.account","destination.fqdn","destination.ip","destination.port","destination.urlpath","destination.account","protocol.application","protocol.transport"Fields
+    "protocol.application" and "protocol.transport" are preferred from source.url.
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.url.expert
+  name: URL
+  parameters:
+    bottype: Expert
+    destination_queues:
+      _default: [gethostbyname-expert-queue, Gethostbyname-Expert1-queue]
+    overwrite: false
+    skip_fields: ''
+  run_mode: continuous
+URLhaus:
+  bot_id: URLhaus
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [URLhaus-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://urlhaus.abuse.ch/feeds/country/AU
+    http_url_formatting: false
+    http_username: ''
+    provider: ' Abuse.ch'
+    rate_limit: 86400
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+URLhaus-Parser:
+  bot_id: URLhaus-Parser
+  description: 'This parser is customised from  generic CSV data parser for URLhaus. '
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.generic.parser_csv
+  name: GenericCsv
+  parameters:
+    bottype: Parser
+    column_regex_search: ''
+    columns: [time.source, source.url, status, classification.type|__IGNORE__, source.fqdn|__IGNORE__,
+      source.ip, source.asn, source.geolocation.cc]
+    columns_required: [time.source, source.url, status, classification.type|__IGNORE__,
+      source.fqdn|__IGNORE__, source.ip, source.asn, source.geolocation.cc]
+    compose_fields: {}
+    data_type: ''
+    default_fields: {}
+    default_url_protocol: https://
+    delimiter: ','
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+    filter_text: ''
+    filter_type: ''
+    skip_header: false
+    time_format: ''
+    type: ''
+    type_translation: {malware_download: malware-distribution}
+  run_mode: continuous
+UnsafeSites-Collector:
+  bot_id: UnsafeSites-Collector
+  description: Fetch reports from an URL
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: HTTP
+  parameters:
+    bottype: Collector
+    code: ''
+    destination_queues:
+      _default: [Webinspektor-Parser-queue]
+    documentation: ''
+    extract_files: false
+    gpg_keyring: ''
+    http_header: {}
+    http_password: ''
+    http_url: https://app.webinspector.com/public/recent_detections/
+    http_url_formatting: false
+    http_username: ''
+    provider: ' WebInspektor'
+    rate_limit: 60
+    signature_url: ''
+    signature_url_formatting: false
+    ssl_client_cert: ''
+    ssl_client_certificate: ''
+    verify_pgp_signatures: false
+  run_mode: continuous
+Webinspektor-Parser:
+  bot_id: Webinspektor-Parser
+  description: Parse the Web Inspektor
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.webinspektor.parser
+  name: Webinspektor
+  parameters:
+    bottype: Parser
+    default_fields: {}
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+cymru-whois-expert:
+  bot_id: cymru-whois-expert
+  description: Cymru Whois (IP to ASN) is the bot responsible to add network information
+    to the events (BGP, ASN, AS Name, Country, etc..).
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.cymru_whois.expert
+  name: Cymru Whois
+  parameters:
+    destination_queues:
+      _default: [file-output-queue, logtash-Output-queue]
+    overwrite: true
+    redis_cache_db: 5
+    redis_cache_host: 127.0.0.1
+    redis_cache_password: null
+    redis_cache_port: 6379
+    redis_cache_ttl: 86400
+  run_mode: continuous
+deduplicator-expert:
+  bot_id: deduplicator-expert
+  description: Deduplicator is the bot responsible for detection and removal of duplicate
+    messages. Messages get cached for <redis_cache_ttl> seconds. If found in the cache,
+    it is assumed to be a duplicate.
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.deduplicator.expert
+  name: Deduplicator
+  parameters:
+    destination_queues:
+      _default: [taxonomy-expert-queue]
+    filter_keys: raw,time.observation
+    filter_type: blacklist
+    redis_cache_db: 6
+    redis_cache_host: 127.0.0.1
+    redis_cache_port: 6379
+    redis_cache_ttl: 86400
+  run_mode: continuous
+feodo-tracker-collector:
+  bot_id: feodo-tracker-collector
+  description: Generic URL Fetcher is the bot responsible to get the report from an
+    URL.
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: URL Fetcher
+  parameters:
+    destination_queues:
+      _default: [feodo-tracker-parser-queue]
+    extract_files: false
+    http_password: ''
+    http_url: https://feodotracker.abuse.ch/downloads/ipblocklist.json
+    http_url_formatting: false
+    http_username: ''
+    name: Feodo Tracker
+    provider: Abuse.ch
+    rate_limit: 86400
+    ssl_client_certificate: ''
+  run_mode: continuous
+feodo-tracker-parser:
+  bot_id: feodo-tracker-parser
+  description: Parser for Feodo Tracker collector.
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.abusech.parser_feodotracker
+  name: Feodo Tracker Parser
+  parameters:
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+file-output:
+  bot_id: file-output
+  description: File is the bot responsible to send events to a file.
+  enabled: true
+  group: Output
+  groupname: outputs
+  module: intelmq.bots.outputs.file.output
+  name: File
+  parameters:
+    destination_queues: {}
+    file: /var/lib/intelmq/bots/file-output/events.txt
+    hierarchical_output: false
+    single_key: null
+  run_mode: continuous
+gethostbyname-expert:
+  bot_id: gethostbyname-expert
+  description: fqdn2ip is the bot responsible to parsing the ip from the fqdn.
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.gethostbyname.expert
+  name: Gethostbyname
+  parameters:
+    destination_queues:
+      _default: [Abusix-Expert-queue]
+  run_mode: continuous
+global: {}
+logtash-Output:
+  bot_id: logtash-Output
+  description: Send events to a Redis database
+  enabled: true
+  group: Output
+  groupname: outputs
+  module: intelmq.bots.outputs.redis.output
+  name: Redis
+  parameters:
+    bottype: Output
+    destination_queues: {}
+    hierarchical_output: false
+    redis_db: 2
+    redis_password: ''
+    redis_queue: logstash-queue
+    redis_server_ip: 127.0.0.1
+    redis_server_port: 6379
+    redis_timeout: 5000
+    with_type: true
+  run_mode: continuous
+spamhaus-drop-collector:
+  bot_id: spamhaus-drop-collector
+  description: ''
+  enabled: true
+  group: Collector
+  groupname: collectors
+  module: intelmq.bots.collectors.http.collector_http
+  name: Spamhaus Drop
+  parameters:
+    destination_queues:
+      _default: [spamhaus-drop-parser-queue]
+    http_password: null
+    http_url: https://www.spamhaus.org/drop/drop.txt
+    http_username: null
+    name: Drop
+    provider: Spamhaus
+    rate_limit: 3600
+    ssl_client_certificate: null
+  run_mode: continuous
+spamhaus-drop-parser:
+  bot_id: spamhaus-drop-parser
+  description: Spamhaus Drop Parser is the bot responsible to parse the DROP, EDROP,
+    DROPv6, and ASN-DROP reports and sanitize the information.
+  enabled: true
+  group: Parser
+  groupname: parsers
+  module: intelmq.bots.parsers.spamhaus.parser_drop
+  name: Spamhaus Drop
+  parameters:
+    destination_queues:
+      _default: [deduplicator-expert-queue]
+  run_mode: continuous
+taxonomy-expert:
+  bot_id: taxonomy-expert
+  description: Taxonomy is the bot responsible to apply the eCSIRT Taxonomy to all
+    events.
+  enabled: true
+  group: Expert
+  groupname: experts
+  module: intelmq.bots.experts.taxonomy.expert
+  name: Taxonomy
+  parameters:
+    destination_queues:
+      _default: [URL-Expert-queue]
+  run_mode: continuous
