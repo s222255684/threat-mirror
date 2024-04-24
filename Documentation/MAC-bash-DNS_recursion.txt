@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set DNS Servers for a given network service (e.g., Wi-Fi)
+network_service="Wi-Fi"
+dns_servers="192.168.1.100 192.168.1.101" # space-separated DNS server IPs
+
+# Set the DNS servers
+networksetup -setdnsservers "$network_service" $dns_servers
+
+echo "DNS servers updated for $network_service."
+
+
+#Note:The MacOS script uses networksetup, which may require administrative privileges. Ensure that the network service name matches your configuration

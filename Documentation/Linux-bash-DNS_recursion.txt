@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Backup the current named.conf
+cp /etc/bind/named.conf /etc/bind/named.conf.backup
+
+# Restrict DNS recursion to specified IP ranges
+sed -i '/options {/a \\tallow-recursion { 192.168.1.0/24; };' /etc/bind/named.conf
+
+# Restart BIND service to apply changes
+systemctl restart bind9
+
+echo "DNS recursion is now restricted to the local subnet."
+
+
+#Note:The Linux script assumes that BIND is installed and uses /etc/bind/named.conf for configuration. Adjust paths as necessary for your distribution
