@@ -1,0 +1,33 @@
+SSH Brute Force Fix Manual
+
+    1. Use Strong Passwords or SSH Keys
+        Ensure all user passwords are complex and changed regularly.
+        Prefer SSH key-based authentication over passwords.
+
+    2. Change the Default SSH Port
+        By changing the default SSH port (22), you can reduce the volume of automated attacks.
+        Edit /etc/ssh/sshd_config, find the Port line, and change it to a non-standard port (e.g., Port 2222).
+
+    3. Use Fail2Ban
+        Fail2Ban monitors login attempts to SSH and automatically bans IP addresses that show malicious patterns.
+        Install Fail2Ban and configure it to monitor SSH login attempts.
+
+    4. Implement Connection Rate Limiting
+        Use iptables or firewalld to limit the rate of incoming connections to the SSH port.
+
+    5. Use Public Key Authentication
+        Disable password authentication and use SSH keys for logging in.
+        Edit /etc/ssh/sshd_config, setting PasswordAuthentication no.
+
+    6. Limit SSH Access by IP
+        If you know the IP addresses or ranges you'll connect from, restrict SSH access to those IPs.
+
+    7. Use Two-Factor Authentication (2FA)
+        Implement 2FA for SSH logins to add an extra layer of security.
+
+    #Note:
+     - Fail2Ban and SSH Configuration Scripts: Save the relevant script, if required, make the script executable using "chmod +x secure_ssh.sh" command, execute the script from the terminal with necessary permissions. 
+     - Back up your data: Always back up your data before making changes to your server configuration.
+     - Test configuration changes: After applying security measures, test your configuration by attempting to log in from a new session without logging out of your current session to prevent being locked out.
+     - Regularly update software: Keep your server's software up to date to ensure you have the latest security patches.
+    
